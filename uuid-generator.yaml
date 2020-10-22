@@ -19,6 +19,14 @@ info:
   title: UUID generator based on httpbin.org
   version: 1.0.3
 paths:
+  x-kong-plugin-rate-limiting-advanced:
+    enabled: true
+    config:
+      limit:
+        - 3
+      window_size:
+        - 30
+      sync_rate: -1
   /uuid:
     get:
       responses:
