@@ -10,4 +10,8 @@ plugins:
     window_size:
     - 30
     sync_rate: -1
-
+- name: cors
+  service: UUID_generator
+  config:
+    origins:
+    - *
