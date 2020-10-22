@@ -14,4 +14,4 @@ plugins:
   service: UUID_generator
   config:
     origins:
-    - *
+    - '*'
