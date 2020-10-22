@@ -19,14 +19,6 @@ info:
   title: UUID generator based on httpbin.org
   version: 1.0.3
 paths:
-  x-kong-plugin-rate-limiting-advanced:
-    enabled: true
-    config:
-      limit:
-        - 3
-      window_size:
-        - 30
-      sync_rate: -1
   /uuid:
     get:
       responses:
@@ -35,5 +27,16 @@ paths:
       summary: Return a UUID4.
       tags:
         - Generate UUID
+      x-kong-plugin-cors:
+        config:
+          origins: 
+          - '*'
+      x-kong-plugin-rate-limiting-advanced:
+        config:
+          limit:
+          - 3
+          window_size:
+          - 10
+          sync_rate: -1        
 servers:
   - url: https://httpbin.org/
