@@ -27,16 +27,16 @@ paths:
       summary: Return a UUID4.
       tags:
         - Generate UUID
-      x-kong-plugin-cors:
-        config:
-          origins:
-          - '*'
-      x-kong-plugin-rate-limiting-advanced:
-        config:
-          limit:
-          - 3
-          window_size:
-          - 10
-          sync_rate: -1
 servers:
   - url: https://httpbin.org/
+    x-kong-plugin-cors:
+      config:
+        origins:
+        - '*'
+    x-kong-plugin-rate-limiting-advanced:
+      config:
+        limit:
+        - 3
+        window_size:
+        - 10
+        sync_rate: -1
