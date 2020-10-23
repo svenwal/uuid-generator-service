@@ -1,5 +1,7 @@
 # UUID generator service
 
+![CI](https://github.com/aaronhmiller/uuid-generator-service/workflows/CI/badge.svg)
+
 This is a demo OpenAPI / Swagger to generate a UUID using https://httpbin.org
 
 It's intended to be used with https://github.com/aaronhmiller/uuid-generator-workspace
