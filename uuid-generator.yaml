@@ -56,7 +56,7 @@ paths:
             type: integer
             minimum: 200
             maximum: 599
-          description: The HTTP status code (200-599)
+          description: The HTTP status code (100-599)
       responses:
         "2xx":
           description: Success
@@ -69,7 +69,7 @@ paths:
       summary: Return status code or random status code if more than one are given
       tags:
         - Status Codes
-      x-kong-plugin-request-validator
+      x-kong-plugin-request-validator:
 servers:
   - url: https://httpbin.org/
     x-kong-plugin-cors:
