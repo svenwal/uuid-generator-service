@@ -46,6 +46,30 @@ paths:
         - Delayed Response
       x-kong-plugin-request-validator:
         enabled: true
+  /status/{codes}:
+    get:
+      parameters:
+        - in: path
+          name: codes
+          required: true
+          schema:
+            type: integer
+            minimum: 200
+            maximum: 599
+          description: The HTTP status code (100-599)
+      responses:
+        "2xx":
+          description: Success
+        "3xx":
+          description: Redirection
+        "4xx":
+          description: Client errors
+        "5xx":
+          description: Server errors
+      summary: Return status code or random status code if more than one are given
+      tags:
+        - Status Codes
+      x-kong-plugin-request-validator
 servers:
   - url: https://httpbin.org/
     x-kong-plugin-cors:
