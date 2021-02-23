@@ -70,6 +70,7 @@ paths:
       tags:
         - Status Codes
       x-kong-plugin-request-validator:
+        enabled: true
 servers:
   - url: https://httpbin.org/
     x-kong-plugin-cors:
