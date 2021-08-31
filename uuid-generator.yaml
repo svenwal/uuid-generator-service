@@ -8,6 +8,7 @@ info:
   contact:
     email: me@kennethreitz.org
     url: https://kennethreitz.org
+    name: Kenneth Reitz
   description: >-
     A simple service returning a UUID based on <https://httpbin.org>
     Also has some more features added like delayed responses and similar
