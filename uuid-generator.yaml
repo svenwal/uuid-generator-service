@@ -66,8 +66,6 @@ paths:
         - Anything
         - CatOrDog
         - Body
-      x-kong-plugin-request-validator:
-        enabled: false 
   /delay/{delay}: 
     get:
       parameters:
