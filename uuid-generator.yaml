@@ -1,6 +1,6 @@
 openapi: 3.0.0
 servers:
-  - url: https://httpbin.org/
+  - url: https://httpbin.apim.eu/
 tags:
   - description: Creates a random UUID and returns it in a JSON structure
     name: Generate UUID
