@@ -68,6 +68,14 @@ paths:
         - Body
       x-kong-plugin-request-validator:
         enabled: true 
+      x-kong-plugin-rate-limiting-advanced:
+        enabled: true
+        config:
+          limit:
+            - 3
+          window_size:
+            - 60
+          namespace: hlferuifgevhrlgzff63
   /delay/{delay}: 
     get:
       parameters:
@@ -116,14 +124,6 @@ paths:
         enabled: true
       x-kong-plugin-key-auth:
         enabled: true
-      x-kong-plugin-rate-limiting-advanced:
-        enabled: true
-        config:
-          limit:
-            - 3
-          window_size:
-            - 60
-          namespace: hlferuifgevhrlgzff63
 components:
   schemas:
     Dog:
