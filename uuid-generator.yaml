@@ -1,16 +1,13 @@
 openapi: 3.0.0
 servers:
-  - url: https://httpbin.org/
-tags:
-  - description: Creates a random UUID and returns it in a JSON structure
-    name: Generate UUID
+  - url: https://httpbin.apim.eu
 info:
   contact:
     email: me@kennethreitz.org
     url: https://kennethreitz.org
     name: Kenneth Reitz
   description: >-
-    A simple service returning a UUID based on <https://httpbin.org>
+    A cool simple service returning a UUID based on <https://httpbin.org>
     Also has some more features added like delayed responses and similar
     
 
@@ -23,6 +20,8 @@ info:
 paths:
   /uuid:
     get:
+      description: Generate and get an UUID
+      operationId: get_uuid
       responses:
         "200":
           description: A UUID4.
@@ -31,6 +30,8 @@ paths:
         - Generate UUID
   /anything/query:
     get:
+      description: returns all your query parameters
+      operationId: query
       parameters:
         - in: query
           name: exampleParam
@@ -51,6 +52,8 @@ paths:
         enabled: true
   /anything/catOrDog:
     post:
+      description: create a new pet
+      operationId: create_pet
       requestBody:
         content:
           application/json:
@@ -67,7 +70,7 @@ paths:
         - CatOrDog
         - Body
       x-kong-plugin-request-validator:
-        enabled: true 
+        enabled: false
       x-kong-plugin-rate-limiting-advanced:
         enabled: true
         config:
@@ -78,6 +81,8 @@ paths:
           namespace: hlferuifgevhrlgzff63
   /delay/{delay}: 
     get:
+      description: delay a responses by a defined number of secondes
+      operationId: delay
       parameters:
         - in: path
           name: delay
@@ -98,6 +103,8 @@ paths:
         enabled: true
   /status/{codes}:
     get:
+      description: returns a http status code
+      operationId: status_code
       parameters:
         - in: path
           name: codes
@@ -125,6 +132,23 @@ paths:
       x-kong-plugin-key-auth:
         enabled: true
 components:
+  securitySchemes:
+    KeyCloak:
+      type: openIdConnect
+      openIdConnectUrl: https://keycloak.apim.eu/auth/realms/kong/.well-known/openid-configuration
+      x-kong-security-openid-connect:
+        config:
+          client_id: 
+            - blog_post
+          client_secret: 
+            - a5186adc-b5e2-4501-85a8-eb19a5e1a2a3
+          ssl_verify: false
+          consumer_claim:
+            - email
+          verify_signature: false
+          redirect_uri:
+             - http://localhost:8000/anything/query
+          consumer_optional: true
   schemas:
     Dog:
       type: object
@@ -147,3 +171,15 @@ components:
  #     required:
  #      - hunts
  #      - age
+
+tags:
+  - description: Creates a random UUID and returns it in a JSON structure
+    name: Generate UUID
+  - name: Anything
+  - name: Query
+  - name: CatOrDog
+  - name: Body
+  - name: Delayed Response
+  - name: Path
+  - name: Status Codes
+  
